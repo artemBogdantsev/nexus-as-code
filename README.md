@@ -20,7 +20,7 @@ kubectl create namespace devops-tools
 
 - **Deployment YAML for Nexus 2.x:** Here we are passing a few customizable ENV variable and adding a volume mount for nexus data.
 ```bash
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nexus
@@ -60,7 +60,7 @@ spec:
 - **Deployment YAML for Nexus 3.x:** Here we dont have any custom env variables. You can check the official docker repo for the supported env variables.
 ```bash
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nexus
@@ -94,7 +94,7 @@ spec:
 
 **Step 3:** Create the deployment using kubectl command.
 ```bash
-kubectl create -f Deployment.yaml
+kubectl apply -f Deployment.yaml
 ```
 Check the deployment pod status
 ```bash
