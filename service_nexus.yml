@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: nexus-service
   namespace: devops-tools
+  labels:
+      app: nexus-server
 spec:
   selector:
     app: nexus-server
-    group: service
   ports:
     - name: http-main
       port: 8081
