@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    kubernetes.io/ingress.class: "nginx"
+  name: rook-ceph-ingress
+  namespace: rook-ceph
+spec:
+  rules:
+    - host: rook-ceph.local
+      http:
+        paths:
+          - backend:
+              serviceName: rook-ceph-mgr-dashboard
+              servicePort: 8443
+            path: /
+  tls:
+    - hosts:
+        - rook-ceph.local
