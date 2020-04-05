@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    kubernetes.io/ingress.class: "nginx"
+  name: registry-ingress
+  namespace: devops-tools
+spec:
+  rules:
+    - host: nexus-docker.local
+      http:
+        paths:
+          - backend:
+              serviceName: nexus-service
+              servicePort: 8123
+            path: /
+  tls:
+    - hosts:
+        - nexus-docker.local
